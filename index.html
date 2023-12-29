@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Info Application</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Stock Info Status</h1>
+    <p id="status">Loading...</p>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'http://127.0.0.1:5000/getStockInfo',
+                type: 'GET',
+                success: function(response) {
+                    $('#status').text('Status: ' + JSON.stringify(response));
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                    $('#status').text('Failed to load data');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
